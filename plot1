@@ -1,0 +1,13 @@
+p<- read.csv("~/Downloads/household_power_consumption.txt", sep=";")
+datetime<-as.POSIXct(paste(p$Date,p$Time), format="%d/%m/%Y %H:%M:%S")
+Global_Active_Power<-p[,3]
+Sub_metering_1<-p[,7]
+Sub_metering_2<-p[,8]
+Sub_metering_3<-p[,9]
+Voltage<-p[,5]
+Global_reactive_power<-p[,4]
+p1<-cbind(time,Global_Active_Power,Sub_metering_1,Sub_metering_2,Sub_metering_3,Voltage,Global_reactive_power)
+
+png("Plot1.png",width = 480,height = 480)
+hist(Global_active_power,main="Global Active Power",col="red",xlab="Global Active Power (kilowatts)”)
+dev.off()
